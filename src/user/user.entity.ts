@@ -16,4 +16,5 @@ export class User {
 
   @Column({ default: 'user' }) // Default role is "user"
   role: string;
+  documents: any;
 }

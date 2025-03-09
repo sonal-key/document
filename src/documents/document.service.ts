@@ -22,7 +22,7 @@ export class DocumentService {
   let res:any = this.userRepository.find({where: {email:user.email}})
   console.log(":ressss",res)
     const document = this.documentRepository.create({
-      userId:res.id, // Must have a valid ID
+      user:res.id, // Must have a valid ID
       fileName,
       fileUrl: `https://dummy-s3-bucket.com/${fileName}`, // Mock S3 URL
       fileType,
@@ -60,6 +60,6 @@ export class DocumentService {
   }
 
   async getDocumentsByUser(userId: number) {
-    return await this.documentRepository.find({ where: { userId: { id: userId } } });
+    return await this.documentRepository.find({ where: { user: { id: userId } } });
   }
 }

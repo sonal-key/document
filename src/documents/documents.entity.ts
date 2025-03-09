@@ -1,13 +1,12 @@
-import { User } from 'src/user/user.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { User } from '../user/user.entity';
 @Entity('documents')
 export class Document {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, (user) => user.id)
-  userId: User;
+  @ManyToOne(() => User, (user) => user.documents, { eager: true })
+  user: User;
 
   @Column()
   fileName: string;
@@ -21,11 +20,9 @@ export class Document {
   @Column()
   fileSize: number;
 
-  @Column({ default: 'uploaded' })
+  @Column({ default: 'pending' }) // Initially set to 'pending'
   status: string;
 
   @CreateDateColumn()
   uploadedAt: Date;
-
-  
 }

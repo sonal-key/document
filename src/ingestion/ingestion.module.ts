@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
-import { IngestionService } from './ingestion.service';
-import { IngestionController } from './ingestion.controller';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Ingestion } from './ingestion.entity';
+import { MockPythonService } from './mock-python.service';
+import { MockPythonController } from './mock-python.controller';
+import { Document } from 'src/documents/documents.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Ingestion])],
-  controllers: [IngestionController],
-  providers: [IngestionService],
-  exports: [IngestionService],
+  imports: [TypeOrmModule.forFeature([Ingestion,Document])],
+  controllers: [MockPythonController],
+  providers: [MockPythonService],
+  exports: [MockPythonService],
 })
 export class IngestionModule {}
