@@ -1,9 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('users')
+@Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ unique: true })
+  username: string;
 
   @Column({ unique: true })
   email: string;
@@ -11,9 +14,6 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: 'viewer' })
+  @Column({ default: 'user' }) // Default role is "user"
   role: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
