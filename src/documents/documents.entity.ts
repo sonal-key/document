@@ -25,4 +25,7 @@ export class Document {
 
   @CreateDateColumn()
   uploadedAt: Date;
+
+  @Column({default:null})
+  userId: any;
 }

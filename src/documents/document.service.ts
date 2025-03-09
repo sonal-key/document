@@ -13,16 +13,16 @@ export class DocumentService {
   ) {}
 
   async uploadDocument(user: any, fileName: string, fileType: string, fileSize: number) {
-    console.log("User before saving document:", user);
+    console.log("User before saving document:", user.email);
   
     // Ensure user ID exists
     // if (!user || !user.id) {
     //   throw new Error("User is not valid. Ensure the user exists and has an ID.");
     // }
-  let res:any = this.userRepository.find({where: {email:user.email}})
+  let res:any = await this.userRepository.findOne({where: {email:user.email}})
   console.log(":ressss",res)
     const document = this.documentRepository.create({
-      user:res.id, // Must have a valid ID
+      userId:res.id, // Must have a valid ID
       fileName,
       fileUrl: `https://dummy-s3-bucket.com/${fileName}`, // Mock S3 URL
       fileType,

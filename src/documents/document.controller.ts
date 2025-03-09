@@ -18,12 +18,12 @@ export class DocumentController {
   constructor(private readonly documentService: DocumentService) {}
 
   @Post('upload')
-  async uploadDocument(@Request() req) {
+  async uploadDocument(@Request() req,) {
     const user = req.user; // Extract user from JWT
     const fileName = `mock_file_${Date.now()}.pdf`;
     const fileType = 'application/pdf';
     const fileSize = 12345; // Dummy size
-console.log("userrrr",user)
+    console.log("user",user)
     const document = await this.documentService.uploadDocument(user, fileName, fileType, fileSize);
     return document;
   }
