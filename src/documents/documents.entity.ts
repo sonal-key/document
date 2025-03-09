@@ -7,7 +7,7 @@ export class Document {
   id: string;
 
   @ManyToOne(() => User, (user) => user.id)
-  user: User;
+  userId: User;
 
   @Column()
   fileName: string;
@@ -26,4 +26,6 @@ export class Document {
 
   @CreateDateColumn()
   uploadedAt: Date;
+
+  
 }

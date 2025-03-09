@@ -10,4 +10,8 @@ export class Ingestion {
 
   @CreateDateColumn()
   createdAt: Date;
+
+
+  @Column({ })
+  DocumentId: string;
 }

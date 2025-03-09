@@ -11,22 +11,42 @@ export class AuthService {
   constructor(private usersService: UsersService, private jwtService: JwtService,   @InjectRepository(User)
       private userRepository: Repository<User>,) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
-    const user:any = await this.usersService.findByEmail(email);
-    if (!user) return null;
+      async validateUser(email: string, pass: string): Promise<any> {
+        const user = await this.userRepository.findOne({ 
+          where: { email }, 
+          select: ['id', 'email', 'role', 'password']  // ✅ Ensure role and id are fetched
+        });
+      
+        console.log('🔹 Found User in DB:', user); // Debugging log
+      
+        if (user && user.password === pass) {
+          const { password, ...result } = user; // Exclude password from response
+          return result;
+        }
+        return null;
+      }
+      
+      
   
-    const isPasswordValid = await bcrypt.compare(pass, user.password);
-    if (!isPasswordValid) return null;
+      async login(user: any) {
+        console.log('🔹 Logging in user:', user); // Debug log
+      
+        const payload = { 
+          email: user.email, 
+          userId: user.id,   // ✅ Ensure we use `user.id`
+          role: user.role    // ✅ Ensure we use `user.role`
+        };
+      
+        console.log('🔹 JWT Payload Before Signing:', payload); // Debugging log
+      
+        const token = this.jwtService.sign(payload);
+        console.log('🔹 Generated Token:', token); // Debug log to check
+      
+        return { access_token: token };
+      }
+      
+      
   
-    const { password, ...result } = user;
-    return result;
-  }
-  
-
-  async login(user: any) {
-    const payload = { email: user.email, sub: user.id };
-    return { access_token: this.jwtService.sign(payload) };
-  }
   async register(registerDto: any) {
     const { username, email, password, role } = registerDto;
   
@@ -59,5 +79,8 @@ export class AuthService {
       }
     };
   }
+
+
+  
   
 }

@@ -12,7 +12,8 @@ export class IngestionService {
   ) {}
 
   async triggerIngestion(ingestionDto) {
-    const ingestion:any = this.ingestionRepository.create({ status: 'processing', ...ingestionDto });
+    console.log("ingestionDto",ingestionDto)
+    const ingestion:any = this.ingestionRepository.create({ status: 'processing',DocumentId: ingestionDto.document_id});
     await this.ingestionRepository.save(ingestion);
 
     // Simulate processing delay

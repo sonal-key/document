@@ -8,9 +8,12 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
 
   handleRequest(err, user) {
+    console.log('🔹 Extracted User:', user);  // Debugging log
+
     if (err || !user) {
-      throw err || new UnauthorizedException('Unauthorized');
+      throw err || new UnauthorizedException('Invalid token');
     }
+
     return user;
   }
 }
