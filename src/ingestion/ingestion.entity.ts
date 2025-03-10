@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
-import { Document } from 'src/documents/documents.entity';
+import { Document } from "../documents/documents.entity"
 @Entity('ingestions')
 export class Ingestion {
   @PrimaryGeneratedColumn('uuid')

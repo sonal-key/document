@@ -1,11 +1,10 @@
 import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/user/user.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/user.entity';
+import { User } from "../user/user.entity"
 import { Repository } from 'typeorm';
-
+import { UsersService } from "../user/user.service"
 @Injectable()
 export class AuthService {
   constructor(private usersService: UsersService, private jwtService: JwtService, @InjectRepository(User)

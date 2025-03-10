@@ -1,10 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
+import { JwtAuthGuard } from "../user/jwt-auth.guard"
 import { CanActivate } from '@nestjs/common';
 import { LoginDto, RegisterDto } from './auth.dto';
 import { Response } from 'express';
+import { UsersService } from '../user/user.service';
+import { Document } from '../documents/documents.entity';
+import { User } from '../user/user.entity';
 
 describe('AuthController', () => {
   let authController: AuthController;

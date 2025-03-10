@@ -6,7 +6,7 @@ import {
   UseGuards 
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
+import { JwtAuthGuard } from "../user/jwt-auth.guard"
 import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { LoginDto, RegisterDto } from './auth.dto';

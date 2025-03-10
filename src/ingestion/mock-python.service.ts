@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Ingestion } from './ingestion.entity';
-import { Document } from 'src/documents/documents.entity';
+import { Document } from "../documents/documents.entity"
 
 @Injectable()
 export class MockPythonService {
