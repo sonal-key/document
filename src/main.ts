@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,12 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
-  await app.listen(process.env.PORT ?? 3000);
+  const port = +app.get(ConfigService).get('PORT') || 8080;
+
+  await app.listen(port, '0.0.0.0', async () => {
+    console.log(`################################################
+  🛡️  Server listening on port: http://0.0.0.0:${port} 🛡️
+################################################`);
+  });
 }
 bootstrap();
