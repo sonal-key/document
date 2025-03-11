@@ -15,12 +15,13 @@ export class UsersService {
 
   findAll() {
     return this.userRepository.find();
+    
   }
   // 2.2 Get User By ID
   async getUserById(id: any) {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) throw new NotFoundException('User not found');
-    
+
     return {
       id: user.id,
       username: user.username,

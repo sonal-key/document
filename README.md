@@ -42,7 +42,10 @@
 | POST   | `/auth/register`  | Register a new user         |
 | POST   | `/auth/login`     | Login and get JWT token     |
 | POST   | `/auth/logout`    | Logout user                 |
-| GET    | `/users`          | List all users (Admin only) |
+| GET    | `/users`          | List all users              |
+| GET    | `/users/:id`      | Get user by ID (JWT Protected) |
+| PUT    | `/users/update-role` | Update user role (Admin only) |
+| DELETE | `/users/:id`      | Delete a user (Admin only)  |
 
 ---
 
@@ -57,13 +60,15 @@
 | Method | Endpoint            | Description                     |
 |--------|--------------------|---------------------------------|
 | POST   | `/documents/upload` | Upload a document              |
+| GET    | `/documents`        | Get all documents              |
 | GET    | `/documents/:id`    | Get document details by ID     |
+| PATCH  | `/documents/:id/status` | Update document status  |
 | DELETE | `/documents/:id`    | Delete a document              |
-| PUT    | `/documents/:id`    | Update document metadata       |
+| GET    | `/documents/user/:userId` | Get documents by user ID  |
 
 ---
 
-## 4. Ingestion Control & Communication with Python mock
+## 4. Ingestion Control & Communication with Python Mock
 
 ### Features:
 - Ingestion API to trigger processing (calls Python API or mock service)
@@ -78,7 +83,31 @@
 
 ---
 
-## 5. Testing & API Documentation (3-4 hours)
+## 5. Basic Entity Definitions
+
+
+### **User Table**
+- `id` (Primary Key, Auto-increment)
+- `email` (Unique, String)
+- `password` (String)
+- `role` (String, Default: "Viewer")
+- `createdAt` (Timestamp, Auto-generated)
+
+### **Document Table**
+- `id` (Primary Key, Auto-increment)
+- `title` (String)
+- `filePath` (String)
+- `status` (String, Default: "Pending")  // Pending, Approved, Rejected
+- `ownerId` (Foreign Key → User)
+- `createdAt` (Timestamp, Auto-generated)
+
+### **Ingestion Table**
+- `id` (Primary Key, Auto-increment)
+- `documentId` (Foreign Key → Document)
+- `status` (String, Default: "Processing")  // Processing, Completed, Failed
+- `createdAt` (Timestamp, Auto-generated)
+
+## 6. Testing & API Documentation
 
 ### Features:
 - Unit tests for key APIs using Jest
@@ -95,7 +124,4 @@ Swagger UI available at:
 ```
 http://localhost:3000/api
 ```
-
----
-
 
