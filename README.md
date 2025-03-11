@@ -1,6 +1,6 @@
 # NestJS Document Management System
 
-## 1. Project Setup & Basic Configuration (2-3 hours)
+## 1. Project Setup & Basic Configuration 
 
 ### Technologies Used:
 - **NestJS** (Node.js framework)
@@ -32,7 +32,7 @@
 
 ---
 
-## 2. User & Authentication APIs (3-4 hours)
+## 2. User & Authentication APIs 
 
 ### Features:
 - User registration, login, and logout
@@ -49,7 +49,7 @@
 
 ---
 
-## 3. Document Management APIs (3-4 hours)
+## 3. Document Management APIs 
 
 ### Features:
 - CRUD operations for documents (upload, update, delete, retrieve)
@@ -66,7 +66,7 @@
 
 ---
 
-## 4. Ingestion Control & Communication with Python (4-5 hours)
+## 4. Ingestion Control & Communication with Python mock
 
 ### Features:
 - Ingestion API to trigger processing (calls Python API or mock service)
@@ -101,6 +101,4 @@ http://localhost:3000/api
 
 ---
 
-## Conclusion
-This NestJS-based document management system provides user authentication, document handling, ingestion tracking, and a well-tested API with clear documentation.
 
