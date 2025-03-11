@@ -21,11 +21,8 @@
    ```
 3. **Configure environment variables**  
    Create a `.env` file and configure database connection, JWT secrets, etc.
-4. **Run database migrations**  
-   ```sh
-   npm run migration:run
-   ```
-5. **Start the server**  
+
+4. **Start the server**  
    ```sh
    npm run start:dev
    ```
