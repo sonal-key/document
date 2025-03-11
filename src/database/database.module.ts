@@ -1,9 +1,10 @@
+import { Ingestion } from '@/ingestion/ingestion.entity';
+import { User } from '@/user/user.entity';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Ingestion } from 'src/ingestion/ingestion.entity';
-import { User } from 'src/user/user.entity';
-import { Document } from 'src/documents/documents.entity';
+import {Document} from "documents/documents.entity"
+
 
 @Module({
   imports: [

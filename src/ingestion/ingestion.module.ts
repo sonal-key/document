@@ -4,8 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Ingestion } from './ingestion.entity';
 import { MockPythonService } from './mock-python.service';
 import { MockPythonController } from './mock-python.controller';
-import { Document } from 'src/documents/documents.entity';
-
+import {Document} from "documents/documents.entity"
 @Module({
   imports: [TypeOrmModule.forFeature([Ingestion,Document])],
   controllers: [MockPythonController],
